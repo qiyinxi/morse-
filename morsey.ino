@@ -1,5 +1,7 @@
 #include <Morse.h>
-
+#define b break
+#define do_t morse.dot
+#define da   morse.dash
   Morse morse(13);
   String str = "";
   
@@ -7,35 +9,35 @@
   {
     switch(n)
     {
-    case 97:str="*-  ";break;//a
-    case 98:str="-***";break;//b
-    case 99:str="-*-*";break;//c
-    case 100:str="-** ";break;//d
-    case 101:str="*   ";break;//e
-    case 102:str="**-*";break;//f
-    case 103:str="--* ";break;//g
-    case 104:str="****";break;//h
-    case 105:str="**  ";break;//i
-    case 106:str="*---";break;//j
-    case 107:str="-*- ";break;//k
-    case 108:str="*-**";break;//l
-    case 109:str="--  ";break;//m
-    case 110:str="-*  ";break;//n
-    case 111:str="--- ";break;//o
-    case 112:str="*--*";break;//p
-    case 113:str="--*-";break;//q
-    case 114:str="*-* ";break;//r
-    case 115:str="*** ";break;//s
-    case 116:str="-   ";break;//t
-    case 117:str="**- ";break;//u
-    case 118:str="***-";break;//v
-    case 119:str="*-- ";break;//w
-    case 120:str="-**-";break;//x
-    case 121:str="-*--";break;//y
-    case 122:str="--**";break;//z
-    case 32:str="*-*-";break;//空格
-    case 10:str="----";break;//回车
-    default:break;
+    case 97:str="*-  ";b;//a
+    case 98:str="-***";b;//b
+    case 99:str="-*-*";b;//c
+    case 100:str="-** ";b;//d
+    case 101:str="*   ";b;//e
+    case 102:str="**-*";b;//f
+    case 103:str="--* ";b;//g
+    case 104:str="****";b;//h
+    case 105:str="**  ";b;//i
+    case 106:str="*---";b;//j
+    case 107:str="-*- ";b;//k
+    case 108:str="*-**";b;//l
+    case 109:str="--  ";b;//m
+    case 110:str="-*  ";b;//n
+    case 111:str="--- ";b;//o
+    case 112:str="*--*";b;//p
+    case 113:str="--*-";b;//q
+    case 114:str="*-* ";b;//r
+    case 115:str="*** ";b;//s
+    case 116:str="-   ";b;//t
+    case 117:str="**- ";b;//u
+    case 118:str="***-";b;//v
+    case 119:str="*-- ";b;//w
+    case 120:str="-**-";b;//x
+    case 121:str="-*--";b;//y
+    case 122:str="--**";b;//z
+    case 32:str="*-*-";b;//空格
+    case 10:str="----";b;//回车
+    default:b;
     }
   }
   
@@ -55,9 +57,9 @@ void loop() {
   for(i=0;i<4;i++)
   {
     if(str[i]=='*')
-    morse.dot();
+   do_t();
     if(str[i]=='-')
-    morse.dash();
+   da();
     delay(50);
   }
   delay(300);
