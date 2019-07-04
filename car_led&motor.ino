@@ -2,7 +2,7 @@
 #define right_led 8
 #define dit digitalWrite
 #define for_led 11
-#define sto_led 10
+#define sto_led 12
 void setup()
 {
   pinMode(5, OUTPUT);
