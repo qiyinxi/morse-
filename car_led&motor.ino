@@ -23,7 +23,6 @@ void loop()
   while(1)
   {
     income=Serial.read();
-    led_off();
     switch(income)
     {
       case 'f':
@@ -46,7 +45,10 @@ void forward()
   dit(10,HIGH);
   dit(6,LOW);
   dit(9,LOW);
+  dit(sto_led,LOW);
+  dit(right_led,LOW);
   dit(for_led,HIGH);
+  dit(left_led,LOW);
 }
 void backword()
 {
@@ -55,6 +57,9 @@ void backword()
   dit(5,LOW);
   dit(10,LOW);
   dit(sto_led,HIGH);
+  dit(right_led,LOW);
+  dit(for_led,LOW);
+  dit(left_led,LOW);
 }
 void right()
 {
@@ -62,7 +67,10 @@ void right()
   dit(10,HIGH);
   dit(6,LOW);
   dit(9,LOW);
+  dit(sto_led,LOW);
   dit(right_led,HIGH);
+  dit(for_led,LOW);
+  dit(left_led,LOW);
 }
 void left()
 {
@@ -70,6 +78,9 @@ void left()
   dit(10,HIGH);
   dit(5,LOW);
   dit(9,LOW);
+  dit(sto_led,LOW);
+  dit(right_led,LOW);
+  dit(for_led,LOW);
   dit(left_led,HIGH);
 }
 void stop()
@@ -79,11 +90,7 @@ void stop()
   dit(6,LOW);
   dit(9,LOW);  
   dit(sto_led,HIGH);
-}
-void led_off()
-{
-  dit(left_led,LOW);
   dit(right_led,LOW);
   dit(for_led,LOW);
-  dit(sto_led,LOW);
+  dit(left_led,LOW);
 }
