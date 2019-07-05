@@ -14,10 +14,11 @@
 # ·第二天 **2019.7.3**
 ####第二天主要讲了库函数编写形式和使用
 在第二天的学习中，在做morse的过程中学到了头文件和库函数的使用方法和编写，还初步了解了c++/java中类的概念。
-知晓了morse码的转译方法和用tinkercad做简单的模拟，还有部分中文morse码，还了解了uno中串口的部分函数以及使用方式。
+知晓了morse码的转译方法和用tinkercad做简单的模拟，还有部分中文morse码，除了学会Arduino中基础库的操作之外，还了解了uno中串口的部分函数以及使用方式。
 ## 作业 morse代码编写
-### 代码如下
-```morse.ino
+代码如下：
+morse.ino
+```
 #include <Morse.h>
 #define b break
 #define do_t morse.dot
@@ -90,7 +91,8 @@ void loop() {
 
 ```
 ## 头文件与类说明
-```Morse.h
+Morse.h
+```
 #ifndef _MORSE_H
 #define _MORSE_H
 class Morse
@@ -107,7 +109,8 @@ class Morse
 };
 #endif /*_MORSE_H*/
 ```
-```Morse.cpp
+Morse.cpp
+```
 #include "Arduino.h"
 #include "Morse.h"
 
@@ -147,22 +150,28 @@ void Morse::w_space()
 }
 
 ```
-```keywords.txt
+keywords.txt
+```
 Morse	KEYWORD1
 dash	KEYWORD2
 dot		KEYWORD2
 ```
 ### tinkercad图片如图
 ![Image text](https://github.com/qiyinxi/morse-/blob/master/7%E6%9C%883%E6%97%A5%E6%91%A9%E5%B0%94%E6%96%AF/morse_tinkercad.JPG)
-当天晚上写作业写到了十二点多快一点
+当天晚上写作业写到了十二点多快一点，morse输出的判断条件总是写成
+>   while(Serial.read()>0);
+然而实际上应该是
+>   while(Serial.available()>0);
+找了半天没找到就很难受，第三天的7seg_led作业判断也是忘记了没找到，找了两个小时，非常难受。
 # ·第三天 **2019.7.4**
 ## 课上 小车马达与灯
 了解了直流电机的模拟方法，且课上老师说现实生活中电机并不能仅仅使用uno板子所提供的电流做驱动，经了解后我知晓了继电器的存在。
 在小车电路搭建完成之后，老师让我们自己去在往上面加led灯，我选择加直行左转右转后退一共四个灯，每一种状态下都有不同的灯会亮，后退和刹车时一个灯，与现实生活相符。
-而后老师讲起了7seg_led和cd4511的使用方法，让我们知道了如果想使用一个芯片，首先要去网上等其他途径去找到芯片的使用说明，然后根据说明搭建电路，由于时间过短老师并没有在搭建完成成功写代码模拟出来，于是便成为了我们的作业。
+而后老师讲起了7seg_led和cd4511的使用方法，首先是使用芯片会节约io口，然后还让我们知道了如果想使用一个芯片，首先要去网上等其他途径去找到芯片的使用说明，然后根据说明搭建电路，由于时间过短老师并没有在搭建完成成功写代码模拟出来，于是便成为了我们的作业。
 经过这节课，我了解了如何去搭建一个较为复杂的电路和其他芯片的使用方法。
-代码如下
-```car_led&motor.ino
+代码如下：
+car_led&motor.ino
+```
 #define left_led 7
 #define right_led 8
 #define dit digitalWrite
@@ -263,8 +272,9 @@ void stop()
 ### tinkercad图片如图
 ![Image text](https://github.com/qiyinxi/morse-/blob/master/7%E6%9C%884%E6%97%A5%E5%B0%8F%E8%BD%A6%E7%81%AF/car_led%26motor_tinkercad.JPG)
 ## 晚上作业是7段数码管
-### 代码如下
-```7seg_led.ino
+代码如下：
+7seg_led.ino
+```
 #define pin pinMode
 #define out OUTPUT
 #define READ Serial.read
