@@ -4,7 +4,7 @@
      软件    |版本号|   日期
 -------------|------|--------  
 Visual Studio|15.9.3|2019.7.2
-Arduino|1.8.9|2019.7.3
+Arduino      |1.8.9 |2019.7.3
 *******************************
 ## 三个文件夹里分别是三次的**作业**
 # ·第一天 **2019.7.2**
@@ -13,46 +13,80 @@ Arduino|1.8.9|2019.7.3
 ##### 有两个下载的软件一直没用到（processing、fritizing）
 # ·第二天 **2019.7.3**
 ####第二天主要讲了库函数编写形式和使用
+在第二天的学习中，在做morse的过程中学到了头文件和库函数的使用方法和编写，还初步了解了c++/java中类的概念。
+知晓了morse码的转译方法和用tinkercad做简单的模拟，还有部分中文morse码，还了解了uno中串口的部分函数以及使用方式。
 ## 作业 morse代码编写
-## 代码如下
+### 代码如下
 ```morse.ino
-#include "Arduino.h"
-#include "Morse.h"
-
-Morse::Morse(int pin)
-{
-	pinMode(pin,OUTPUT);
-	_pin=pin;
-	_dottime=250;
+#include <Morse.h>
+#define b break
+#define do_t morse.dot
+#define da   morse.dash
+  Morse morse(13);
+  String str = "";
+  
+  void trans(int n)
+  {
+    switch(n)
+    {
+    case 97:str="*-  ";b;//a
+    case 98:str="-***";b;//b
+    case 99:str="-*-*";b;//c
+    case 100:str="-** ";b;//d
+    case 101:str="*   ";b;//e
+    case 102:str="**-*";b;//f
+    case 103:str="--* ";b;//g
+    case 104:str="****";b;//h
+    case 105:str="**  ";b;//i
+    case 106:str="*---";b;//j
+    case 107:str="-*- ";b;//k
+    case 108:str="*-**";b;//l
+    case 109:str="--  ";b;//m
+    case 110:str="-*  ";b;//n
+    case 111:str="--- ";b;//o
+    case 112:str="*--*";b;//p
+    case 113:str="--*-";b;//q
+    case 114:str="*-* ";b;//r
+    case 115:str="*** ";b;//s
+    case 116:str="-   ";b;//t
+    case 117:str="**- ";b;//u
+    case 118:str="***-";b;//v
+    case 119:str="*-- ";b;//w
+    case 120:str="-**-";b;//x
+    case 121:str="-*--";b;//y
+    case 122:str="--**";b;//z
+    case 32:str="*-*-";b;//空格
+    case 10:str="----";b;//回车
+    default:b;
+    }
+  }
+  
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
 }
 
-void Morse::dot()
-{
-	digitalWrite(_pin,HIGH);
-	delay(_dottime);
-	digitalWrite(_pin,LOW);
-	delay(_dottime);
+void loop() {
+  int getread;
+  while(Serial.available()>0)
+  {
+  getread = Serial.read();
+  // put your main code here, to run repeatedly:
+  trans(getread);
+  int i;
+  for(i=0;i<4;i++)
+  {
+    if(str[i]=='*')
+   do_t();
+    if(str[i]=='-')
+   da();
+    delay(50);
+  }
+  delay(300);
+  str="";
+}
 }
 
-void Morse::dash()
-{
-	digitalWrite(_pin,HIGH);
-	delay(_dottime*4);
-	digitalWrite(_pin,LOW);
-	delay(_dottime);
-}
-
-void Morse::c_space()
-{
-	digitalWrite(_pin,LOW);
-	delay(_dottime*3);
-}
-
-void Morse::w_space()
-{
-	digitalWrite(_pin,LOW);
-	delay(_dottime*7);
-}
 
 ```
 ## 头文件与类说明
@@ -120,10 +154,14 @@ dot		KEYWORD2
 ```
 ### tinkercad图片如图
 ![Image text](https://github.com/qiyinxi/morse-/blob/master/7%E6%9C%883%E6%97%A5%E6%91%A9%E5%B0%94%E6%96%AF/morse_tinkercad.JPG)
-##### 写到贼晚
+当天晚上写作业写到了十二点多快一点
 # ·第三天 **2019.7.4**
-## 小车马达与灯
-### 代码如下
+## 课上 小车马达与灯
+了解了直流电机的模拟方法，且课上老师说现实生活中电机并不能仅仅使用uno板子所提供的电流做驱动，经了解后我知晓了继电器的存在。
+在小车电路搭建完成之后，老师让我们自己去在往上面加led灯，我选择加直行左转右转后退一共四个灯，每一种状态下都有不同的灯会亮，后退和刹车时一个灯，与现实生活相符。
+而后老师讲起了7seg_led和cd4511的使用方法，让我们知道了如果想使用一个芯片，首先要去网上等其他途径去找到芯片的使用说明，然后根据说明搭建电路，由于时间过短老师并没有在搭建完成成功写代码模拟出来，于是便成为了我们的作业。
+经过这节课，我了解了如何去搭建一个较为复杂的电路和其他芯片的使用方法。
+代码如下
 ```car_led&motor.ino
 #define left_led 7
 #define right_led 8
