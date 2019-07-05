@@ -1,9 +1,11 @@
 # **开源硬件实战作业** 赵子旭 18010500055
-> 授课教师：damo王（张力月）
-软件|版本号|日期
--|-|-
+> 授课教师：damo王
+*******************************
+     软件    |版本号|   日期
+-------------|------|--------  
 Visual Studio|15.9.3|2019.7.2
 Arduino|1.8.9|2019.7.3
+*******************************
 ## 三个文件夹里分别是三次的**作业**
 # ·第一天 **2019.7.2**
 ## 了解各种软件，与三个软件下载
@@ -13,7 +15,7 @@ Arduino|1.8.9|2019.7.3
 ####第二天主要讲了库函数编写形式和使用
 ## 作业 morse代码编写
 ## 代码如下
-'''morse.ino
+```morse.ino
 #include "Arduino.h"
 #include "Morse.h"
 
@@ -52,9 +54,9 @@ void Morse::w_space()
 	delay(_dottime*7);
 }
 
-'''
+```
 ## 头文件与类说明
-'''Morse.h
+```Morse.h
 #ifndef _MORSE_H
 #define _MORSE_H
 class Morse
@@ -70,8 +72,8 @@ class Morse
     int _dottime;
 };
 #endif /*_MORSE_H*/
-'''
-'''Morse.cpp
+```
+```Morse.cpp
 #include "Arduino.h"
 #include "Morse.h"
 
@@ -110,19 +112,19 @@ void Morse::w_space()
 	delay(_dottime*7);
 }
 
-'''
-'''keywords.txt
+```
+```keywords.txt
 Morse	KEYWORD1
 dash	KEYWORD2
 dot		KEYWORD2
-'''
+```
 ### tinkercad图片如图
 ![Image text](https://github.com/qiyinxi/morse-/blob/master/7%E6%9C%883%E6%97%A5%E6%91%A9%E5%B0%94%E6%96%AF/morse_tinkercad.JPG)
 ##### 写到贼晚
 # ·第三天 **2019.7.4**
 ## 小车马达与灯
 ### 代码如下
-'''car_led&motor.ino
+```car_led&motor.ino
 #define left_led 7
 #define right_led 8
 #define dit digitalWrite
@@ -219,12 +221,12 @@ void stop()
   dit(for_led,LOW);
   dit(left_led,LOW);
 }
-'''
+```
 ### tinkercad图片如图
 ![Image text](https://github.com/qiyinxi/morse-/blob/master/7%E6%9C%884%E6%97%A5%E5%B0%8F%E8%BD%A6%E7%81%AF/car_led%26motor_tinkercad.JPG)
 ## 晚上作业是7段数码管
 ### 代码如下
-'''7seg_led.ino
+```7seg_led.ino
 #define pin pinMode
 #define out OUTPUT
 #define READ Serial.read
@@ -287,7 +289,7 @@ char show(char g)
   wri(A4,LOW);
   return 0;
 }
-'''
+```
 ### tinkercad图片如图
 ![Image text](https://github.com/qiyinxi/morse-/blob/master/7%E6%9C%884%E6%97%A57%E6%AE%B5%E6%95%B0%E7%A0%81%E7%AE%A1/7seg_led_tinkercad.png)
 ###### （老师上课没做出来）
